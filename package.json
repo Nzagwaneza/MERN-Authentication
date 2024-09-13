@@ -1,0 +1,17 @@
+{
+  "name": "mern-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.21.0",
+    "nodemon": "^3.1.4"
+  }
+}
