@@ -4,6 +4,9 @@ import { errorHandler } from "../utils/error.js";
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
+  if (!password) {
+    return res.status(400).json({ error: "Password is required" });
+  }
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({ username, email, password: hashedPassword });
 
@@ -12,7 +15,7 @@ export const signup = async (req, res, next) => {
     res.status(201).json({ message: "User created successfully" });
   } catch (error) {
     next(error);
-    // sometime we may need to add our custom error:
+    // sometimes we may need to add our custom error:
     //next(errorHandler(300, error.message));
     // next(errorHandler(300, "Something went wrong!"));
   }

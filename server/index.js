@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
+import cors from "cors";
+
 dotenv.config();
 
 const app = express();
@@ -25,6 +27,15 @@ app.get("/", (req, res) => {
 
 app.use("/server/user", userRoutes);
 app.use("/server/auth", authRoutes);
+
+// Allow CORS for requests from localhost:5173 (the Vite server)
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["POST", "GET", "OPTIONS"],
+    credentials: true, // Allow credentials if needed
+  })
+);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
