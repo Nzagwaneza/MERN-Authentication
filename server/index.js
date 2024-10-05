@@ -13,7 +13,7 @@ mongoose
   .then(() => {
     console.log("Connected to MongoDB");
   })
-  .catch((error) => console.log(err));
+  .catch((error) => console.log(error));
 
 app.use(express.json()); //used because by default wwe can not send json to our app.
 
