@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
-import cors from "cors";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -16,6 +16,7 @@ mongoose
   .catch((error) => console.log(error));
 
 app.use(express.json()); //used because by default wwe can not send json to our app.
+app.use(cookieParser());
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000!");
